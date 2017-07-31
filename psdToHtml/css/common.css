@@ -10,7 +10,7 @@
 .public-header .header-logo a{
     height: 54px;
     width: 182px;
-    background: url("../images/index-header-logo.png");
+    background: url("../images/index-header-logo.png") no-repeat;
 }
 
 .public-header .header-nav{
@@ -41,6 +41,7 @@
 .public-footer{
     height: 218px;
     padding: 100px;
+    margin-top: 200px;
     background: #3b3b3b;
 }
 
@@ -62,5 +63,6 @@
     height:55px;
     margin-top: -10px;
     margin-bottom: 12px;
-    background: url("../images/index-footer-logo.png");
+    background: url("../images/index-footer-logo.png") no-repeat;
 }
+
