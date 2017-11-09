@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="example"></div>
+</body>
+<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+<script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+<script type="text/babel">
+    class Mytitle extends React.Component{
+        constructor(...args){
+            super(...args);
+            this.state={
+                text: "World",
+                flag: true    
+            };
+        }
+
+        handleClick(e){
+            var time = new Date();
+            var str1 = time.getFullYear();
+            var str2 = time.getMonth() + 1;
+            var str3 = time.getDate();
+            var text2 = str1+'年'+str2+'月'+str3+'日';
+            let flag = !this.state.flag;
+            this.setState({
+                flag: flag,
+                text: flag ? 'World' : text2
+            });
+            // if(this.state.flag){
+            //     this.setState({
+            //         text: str1+'年'+str2+'月'+str3+'日',
+            //         flag: false
+            //     });
+            // }else{
+            //     this.setState({
+            //         text: "World",
+            //         flag: true
+            //     });
+            // }
+            
+            
+        }
+
+        render(){
+            return <div>
+                <p onClick={this.handleClick.bind(this)}>Hello {this.state.text}</p>
+            </div>;
+        }
+        
+    };
+    ReactDOM.render(
+        <Mytitle/>,
+        document.getElementById('example')
+    );
+</script>
+
+</html>
