@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="my_view">
+        搜索：<input type="text" v-model="search" />
+        <ul>
+            <li v-for="friend in friends | filterBy search in 'name'">{{ friend.name }}</li>
+        </ul>
+    </div>
+    <!-- Vue2.0已经移除filterBy过滤器 -->
+    <!-- <script src="https://cdn.bootcss.com/vue/2.5.3/vue.min.js"></script> -->
+    <script src="https://cdn.bootcss.com/vue/1.0.27/vue.min.js"></script>
+    <script src="app2.js"></script>
+</body>
+
+</html>
