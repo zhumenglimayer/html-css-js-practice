@@ -40,11 +40,11 @@ describe('test index.html', function() {
       .goto('http://127.0.0.1:8080/index.html')
       .wait(1000)
       .evaluate(function () {
-        return window.getComputedStyle(document.querySelector('h1'),null);
+        return window.getComputedStyle(document.querySelector('h1'),null).color;
       })
       .end()
-      .then(function(style) {
-        expect(style.color).to.equal('red');
+      .then(function(result) {
+        expect(result).to.equal('rgb(255, 0, 0)');
         done();
       })
   });
