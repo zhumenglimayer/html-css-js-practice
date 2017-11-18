@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="person in persons">{{person.name}}</li>
+            <li>--------------------------</li>
+        </ul>
+        <ul>
+            <template v-for="person in persons">
+                <li>{{person.name}}</li>
+                <li>--------------------------</li>
+            </template>
+        </ul>
+        <ul>
+            <li v-for="(value,key,index) in he">
+                {{index}} : {{key}} : {{value}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="num in 10">{{num}}</li>
+        </ul>
+        <ul>
+            <li v-for="num in [1,3,5,7,9]">{{num}}</li>
+        </ul>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="v-for.js"></script>
+</body>
+
+</html>
