@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .active {
+            width: 100px;
+            height: 100px;
+            background: green;
+        }
+
+        .text-danger {
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <div v-bind:class="classObject"></div> -->
+        <div :class="classObject"></div>
+        <!-- <div v-bind:style="styleObject">Mayer</div> -->
+        <div :style="styleObject">Mayer</div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="v-bind.js"></script>
+</body>
+
+</html>
