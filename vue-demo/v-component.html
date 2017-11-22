@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="parentMessage">
+        <mayer :message="parentMessage"></mayer>
+        <ol>
+            <chiku v-for="(item,index) in sites" v-bind:todo="item" :key="index"></chiku>
+        </ol>
+        <div id="counter-event-example">
+            <p>{{ total }}</p>
+            <button-counter v-on:increment="incrementTotal"></button-counter>
+            <button-counter v-on:increment="incrementTotal"></button-counter>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="v-component.js"></script>
+</body>
+
+</html>
