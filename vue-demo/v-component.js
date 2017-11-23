@@ -16,7 +16,7 @@ Vue.component('button-counter', {
     methods: {
         increment: function () {
             this.counter += 1
-            this.$emit('increment')
+            this.$emit('increment2')
         }
     },
 });
