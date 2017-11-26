@@ -19,8 +19,60 @@
         }
         
     };
+    var HelloMessage=React.createClass({
+        render: function(){
+            return  <div>
+                        Hello {this.props.name}
+                    </div>;
+        }
+    });
+    var NotesList= React.createClass({
+        render: function(){
+            return (
+                <ol>
+                    {
+                        React.Children.map(this.props.children,function(child){
+                            return <li>{child}</li>;
+                        })
+                    }
+                </ol>
+            );
+        }
+    });
+
+    var Mytitle2=React.createClass({
+        propTypes: {
+            title: React.PropTypes.string.isRequired
+        },
+        render: function(){
+            return <h1>{this.props.title}</h1>;
+        }
+    });
+    var data = '123';
+
+    var Mytitle3 = React.createClass({
+        getDefaultProps: function(){
+            return {
+                title: 'Hello World'
+            };
+        },
+        render: function(){
+            return <h1> {this.props.title} </h1>;
+        }
+    });
     ReactDOM.render(
-        <Mytitle/>,
+        // <Mytitle/>,
+
+        // <HelloMessage name="Jack"/>,
+
+        // <NotesList>
+        //     <span>Hello</span>
+        //     <span>MMaayyeerr</span>
+        // </NotesList>,
+
+        // <Mytitle2 title={data}/>,
+
+        <Mytitle3/>,
         document.getElementById('example')
     );
 </script>

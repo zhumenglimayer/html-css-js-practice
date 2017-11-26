@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <div id="example"></div>
 </body>
@@ -13,9 +15,22 @@
 <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
 <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
 <script type="text/babel">
+    var names=['Mayer','Chiku','Zml'];
+    var arrs=[  
+                <h1>ZZZZZZZZZZZ</h1>,
+                <h2>MMMMMM</h2>,
+                <h3>LLLLLLLL</h3>
+            ];
     ReactDOM.render(
-        <span>Hello React!</span>,
+        <div>
+            <span>Hello React!</span>
+            {names.map(function(name,index){
+                return <div key={index}>Hello,{name}</div>
+            })}
+            <div>{arrs}</div>
+        </div>,
         document.getElementById('example')
     );
 </script>
+
 </html>
