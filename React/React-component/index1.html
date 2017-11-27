@@ -60,6 +60,34 @@
             return <h1> {this.props.title} </h1>;
         }
     });
+
+    var MyComponent = React.createClass({
+        handleClick: function(){
+            this.refs.inputText.focus();
+        },
+        render: function(){
+            return (
+                <div>
+                    <input type="text" ref="inputText"/>    
+                    <button onClick={this.handleClick}>Click!</button>
+                </div>);
+        }
+    });
+
+    var ChangeButton = React.createClass({
+        getInitialState: function(){
+            return {flag: false};
+        },
+        handleClick: function(){
+            this.setState({flag: !this.state.flag});
+        },
+        render: function(){
+            var text = this.state.flag? 'Mayer' : 'Chiku';
+            return (
+                <p onClick={this.handleClick}>Your name is {text},Click to change!</p>
+            );
+        }
+    });
     ReactDOM.render(
         // <Mytitle/>,
 
@@ -72,7 +100,11 @@
 
         // <Mytitle2 title={data}/>,
 
-        <Mytitle3/>,
+        // <Mytitle3/>,
+
+        // <MyComponent/>,
+
+        <ChangeButton/>,
         document.getElementById('example')
     );
 </script>
