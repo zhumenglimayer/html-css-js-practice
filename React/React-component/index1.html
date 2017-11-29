@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <div id="example"></div>
 </body>
@@ -20,15 +22,48 @@
         }
         
     };
-    var HelloMessage=React.createClass({
-        render: function(){
-            return  <div>
-                        Hello {this.props.name}
-                    </div>;
+    // ES5的写法
+    // var HelloMessage=React.createClass({
+    //     render: function(){
+    //         return  (<div>
+    //                     Hello {this.props.name}
+    //                 </div>);
+    //     }
+    // });
+
+    // ES6
+    class HelloMessage extends React.Component{
+        constructor(props){
+            super(props);
+            
         }
-    });
-    var NotesList= React.createClass({
-        render: function(){
+        render(){
+            return  <div> Hello {this.props.name} </div>;
+        }
+    };
+
+    // ES5
+    // var NotesList= React.createClass({
+    //     render: function(){
+    //         return (
+    //             <ol>
+    //                 {
+    //                     React.Children.map(this.props.children,function(child){
+    //                         return <li>{child}</li>;
+    //                     })
+    //                 }
+    //             </ol>
+    //         );
+    //     }
+    // });
+
+    // ES6
+    class NotesList extends React.Component{
+        constructor(props){
+            super(props);
+            
+        }
+        render(){
             return (
                 <ol>
                     {
@@ -39,85 +74,174 @@
                 </ol>
             );
         }
-    });
+    };
 
-    var Mytitle2=React.createClass({
-        propTypes: {
-            title: React.PropTypes.string.isRequired
-        },
-        render: function(){
+    // var Mytitle2=React.createClass({
+    //     propTypes: {
+    //         title: React.PropTypes.string.isRequired
+    //     },
+    //     render: function(){
+    //         return <h1>{this.props.title}</h1>;
+    //     }
+    // });
+    // ES6
+    // 验证propTypes需要引入react.js而不能是react.min.js
+    class Mytitle2 extends React.Component{
+        constructor(props){
+            super(props);
+            
+        }
+        render(){
             return <h1>{this.props.title}</h1>;
         }
-    });
-    var data = '123';
+    }
+    Mytitle2.propTypes={
+        title: React.PropTypes.string.isRequired
+    };
+    var data = 123;
 
-    var Mytitle3 = React.createClass({
-        getDefaultProps: function(){
-            return {
-                title: 'Hello World'
-            };
-        },
-        render: function(){
+    // var Mytitle3 = React.createClass({
+    //     getDefaultProps: function(){
+    //         return {
+    //             title: 'Hello World'
+    //         };
+    //     },
+    //     render: function(){
+    //         return <h1> {this.props.title} </h1>;
+    //     }
+    // });
+    // ES6
+    class Mytitle3 extends React.Component{
+        constructor(props){
+            super(props);
+            
+        }
+        render(){
             return <h1> {this.props.title} </h1>;
         }
-    });
+    }
+    Mytitle3.defaultProps={
+        title: 'Hello World'
+    }
 
-    var MyComponent = React.createClass({
-        handleClick: function(){
+    // var MyComponent = React.createClass({
+    //     handleClick: function(){
+    //         this.refs.inputText.focus();
+    //     },
+    //     render: function(){
+    //         return (
+    //             <div>
+    //                 <input type="text" ref="inputText"/>    
+    //                 <button onClick={this.handleClick}>Click!</button>
+    //             </div>);
+    //     }
+    // });
+    // ES6
+    class MyComponent extends React.Component{
+        constructor(props){
+            super(props);
+            // this.handleClick=this.handleClick.bind(this);
+        }
+        handleClick(){
             this.refs.inputText.focus();
-        },
-        render: function(){
+        }
+        render(){
             return (
                 <div>
                     <input type="text" ref="inputText"/>    
-                    <button onClick={this.handleClick}>Click!</button>
+                    <button onClick={()=>this.handleClick()}>Click!</button>
                 </div>);
         }
-    });
+    }
 
-    var ChangeButton = React.createClass({
-        getInitialState: function(){
-            return {flag: false};
-        },
-        handleClick: function(){
+    // var ChangeButton = React.createClass({
+    //     getInitialState: function(){
+    //         return {flag: false};
+    //     },
+    //     handleClick: function(){
+    //         this.setState({flag: !this.state.flag});
+    //     },
+    //     render: function(){
+    //         var text = this.state.flag? 'Mayer' : 'Chiku';
+    //         return (
+    //             <p onClick={this.handleClick}>Your name is {text},Click to change!</p>
+    //         );
+    //     }
+    // });
+    class ChangeButton extends React.Component{
+        constructor(props){
+            super(props);
+            this.state= {
+                flag: false
+            };
+        }
+        handleClick(){
             this.setState({flag: !this.state.flag});
-        },
-        render: function(){
-            var text = this.state.flag? 'Mayer' : 'Chiku';
-            return (
-                <p onClick={this.handleClick}>Your name is {text},Click to change!</p>
+        }
+        render(){
+            var text = this.state.flag ? 'Mayer' : 'Chiku';
+            return(
+                <p onClick={()=>this.handleClick()}>Your name is {text},Click to change!</p>
             );
         }
-    });
+    }
 
-    var UserGist = React.createClass({
-        getInitialState: function(){
-            return {
+    // var UserGist = React.createClass({
+    //     getInitialState: function(){
+    //         return {
+    //             username: '',
+    //             lastGistUrl: ''
+    //         };
+    //     },
+
+    //     componentDidMount: function(){
+    //         $.get(this.props.source,function(result){
+    //             var lastGist = result[0];
+    //             if(this.isMounted()){
+    //                 this.setState({
+    //                     username: lastGist.owner.login,
+    //                     lastGistUrl: lastGist.html_url
+    //                 });
+    //             }
+    //         }.bind(this));
+    //     },
+
+    //     render: function(){
+    //         return(
+    //             <div>
+    //                 {this.state.username}'s last gist is <a href={this.state.lastGistUrl}>here</a>
+    //             </div>
+    //         );
+    //     }
+    // });
+    class UserGist extends React.Component{
+        constructor(props){
+            super(props);
+            this.state={
                 username: '',
                 lastGistUrl: ''
-            };
-        },
-
-        componentDidMount: function(){
+            }
+        }
+        componentDidMount(){
             $.get(this.props.source,function(result){
                 var lastGist = result[0];
-                if(this.isMounted()){
-                    this.setState({
-                        username: lastGist.owner.login,
-                        lastGistUrl: lastGist.html_url
-                    });
-                }
+                this.setState({
+                    username: lastGist.owner.login,
+                    lastGistUrl: lastGist.html_url
+                });
             }.bind(this));
-        },
-
-        render: function(){
+        }
+        componentWillUnmount(){
+            this.serverRequest.abort();  
+        }
+        render(){
             return(
                 <div>
                     {this.state.username}'s last gist is <a href={this.state.lastGistUrl}>here</a>
                 </div>
-            );
+            ); 
         }
-    });
+    }
     ReactDOM.render(
         // <Mytitle/>,
 
@@ -140,4 +264,5 @@
         document.getElementById('example')
     );
 </script>
+
 </html>
