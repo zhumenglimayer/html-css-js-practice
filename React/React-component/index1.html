@@ -142,14 +142,14 @@
             super(props);
             // this.handleClick=this.handleClick.bind(this);
         }
-        handleClick(){
+        handleClick=()=>{
             this.refs.inputText.focus();
         }
         render(){
             return (
                 <div>
                     <input type="text" ref="inputText"/>    
-                    <button onClick={()=>this.handleClick()}>Click!</button>
+                    <button onClick={this.handleClick}>Click!</button>
                 </div>);
         }
     }
@@ -256,11 +256,11 @@
 
         // <Mytitle3/>,
 
-        // <MyComponent/>,
+        <MyComponent/>,
 
         // <ChangeButton/>,
 
-        <UserGist source="https://api.github.com/users/octocat/gists"/>,
+        // <UserGist source="https://api.github.com/users/octocat/gists"/>,
         document.getElementById('example')
     );
 </script>
