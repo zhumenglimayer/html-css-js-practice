@@ -11,28 +11,25 @@ module.exports = {
         filename: 'bundle.js'
     },
 
-    // 引用但不打包的文件
-      externals: { 'react': 'React', 'react-dom': 'ReactDOM' },
-
-      plugins: [
+    plugins: [
 
         // webpack2 需要设置 LoaderOptionsPlugin 开启代码压缩
         new webpack.LoaderOptionsPlugin({
-          minimize: true,
-          debug: false
+            minimize: true,
+            debug: false
         }),
 
         // Uglify的配置
         new webpack.optimize.UglifyJsPlugin({
-          beautify: false,
-          comments: false,
-          compress: {
-            warnings: false,
-            drop_console: true,
-            collapse_vars: true
-          }
+            beautify: false,
+            comments: false,
+            compress: {
+                warnings: false,
+                drop_console: true,
+                collapse_vars: true
+            }
         })
-      ],
+    ],
 
     resolve: {
         // 给src目录一个路径，避免出现'../../'这样的引入
@@ -115,6 +112,16 @@ module.exports = {
                     }
                 ]
             }
+            // ,
+            // {
+            //     test: /\.json$/,
+            //     use: [
+            //         {
+            //             loader: 'json-loader'
+
+            //         }
+            //     ]
+            // }
         ]
     }
 }

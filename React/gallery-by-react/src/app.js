@@ -8,24 +8,25 @@ var imageDatas = require('_/data/imageDatas.json');
 // 将图片名信息转成图片URL路径信息
 imageDatas = (function getImageUrl(imageDatasArr) {
   for (var i = 0, j = imageDatasArr.length; i < j; i++) {
-    var singleImageData = imageDatasArr[i]
-    singleImageData.imageURL = require('_/images'+ singleImageData.filename)
-    imageDatasArr[i] = singleImageData
+    var singleImageData = imageDatasArr[i];
+    singleImageData.imageURL = require('_/images/'+ singleImageData.filename);
+    imageDatasArr[i] = singleImageData;
   }
-  return imageDatasArr
-})(imageDatas)
+  return imageDatasArr;
+})(imageDatas);
 
 class App extends React.Component {
   render() {
     return (
-      <section className="stage">
-        <section className="img-sec"> 
+      <div className="stage">
+        <div className="img-sec"> 
 
-        </section>
+        </div>
         <nav className="controller-nav">
         
         </nav>
-      </section>
+      </div>
+      
     )
   }
 }
