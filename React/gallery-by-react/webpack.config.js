@@ -1,6 +1,5 @@
 const path = require('path')
 const webpack = require('webpack')
-const autoprefixer = require('autoprefixer')
 
 module.exports = {
     // 需要编译的入口文件
@@ -73,24 +72,12 @@ module.exports = {
                     { loader: 'style-loader' },
 
                     {
-                        loader: 'css-loader',
-
-                        // 开启了CSS Module功能，避免类名冲突问题
-                        options: {
-                            modules: true,
-                            localIdentName: '[name]-[local]'
-                        }
+                        loader: 'css-loader'
                     },
 
                     {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: function () {
-                                return [
-                                    autoprefixer
-                                ]
-                            }
-                        }
+                        loader: 'postcss-loader'
+                        
                     },
 
                     {

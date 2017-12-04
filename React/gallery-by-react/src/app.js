@@ -9,24 +9,42 @@ var imageDatas = require('_/data/imageDatas.json');
 imageDatas = (function getImageUrl(imageDatasArr) {
   for (var i = 0, j = imageDatasArr.length; i < j; i++) {
     var singleImageData = imageDatasArr[i];
-    singleImageData.imageURL = require('_/images/'+ singleImageData.filename);
+    singleImageData.imageURL = require('_/images/' + singleImageData.filename);
     imageDatasArr[i] = singleImageData;
   }
   return imageDatasArr;
 })(imageDatas);
 
-class App extends React.Component {
+class ImgFigure extends React.Component {
   render() {
     return (
-      <div className="stage">
-        <div className="img-sec"> 
+      <figure>
+        <img src={this.props.data.imageURL} alt={this.props.data.title} className="img-size"/>
+        <figcaption>
+          <h2>{this.props.data.title}</h2>
+        </figcaption>
+      </figure>
+    )
+  }
+}
 
+class App extends React.Component {
+  render() {
+    var controllerUnits = [];
+    var imageFigures = [];
+    imageDatas.forEach(function (value) {
+      imageFigures.push(<ImgFigure data={value} />)
+    });
+    return (
+      <div className="stage">
+        <div className="img-sec">
+          {imageFigures}
         </div>
         <nav className="controller-nav">
-        
+          {controllerUnits}
         </nav>
       </div>
-      
+
     )
   }
 }
