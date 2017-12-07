@@ -29,8 +29,17 @@ function get30DegRandom() {
 
 class ImgFigure extends React.Component {
 
-  handleClick(e){
-    this.props.inverse()
+  constructor(args) {
+    super(args)
+    this.handleClick=this.handleClick.bind(this)
+  }
+
+  handleClick(e) {
+    if (this.props.arrange.isCenter) {
+      this.props.inverse()
+    } else {
+      this.props.center()
+    }
     e.stopPropagation()
     e.preventDefault()
   }
@@ -39,13 +48,16 @@ class ImgFigure extends React.Component {
     if (this.props.arrange.pos) {
       styleObject = this.props.arrange.pos
     }
-    if(this.props.arrange.rotate){
-      (['-moz-','-ms-','-webkit-','']).forEach(function(value){
-        styleObject[value + 'transform'] = 'rotate(' + this.props.arrange.rotate + 'deg)'
+    if (this.props.arrange.rotate) {
+      ['-moz-','-ms','-webkit-',''].forEach(function (value) {
+        styleObject[value+'transform'] = 'rotate(' + this.props.arrange.rotate + 'deg)'
       }.bind(this))
     }
+    if(this.props.arrange.isCenter){
+      styleObject.zIndex  = 11
+    }
     var imgFigureClassName = 'img-figure'
-    imgFigureClassName += this.props.arrange.isInverse ? ' is-inverse' : ''
+    imgFigureClassName += this.props.arrange.isInverse ? ' is-inverse' : ' '
     return (
       <figure className={imgFigureClassName} style={styleObject} onClick={this.handleClick}>
         <img src={this.props.data.imageURL} alt={this.props.data.title} className="img-size" />
@@ -80,10 +92,12 @@ class App extends React.Component {
             top: 0
           },
           rotate: 0,
-          isInverse: false
+          isInverse: false,
+          isCenter: false
         }
       }
-      imageFigures.push(<ImgFigure data={value} ref={'imgFigure' + index} arrange={this.state.imgsArrangeArr[index]} inverse={this.inverse(index)}/>)
+      imageFigures.push(<ImgFigure data={value} ref={'imgFigure' + index} arrange={this.state.imgsArrangeArr[index]} inverse={this.inverse(index)}
+        center={this.center(index)} />)
     }.bind(this));
     return (
       <div className="stage" ref="stage">
@@ -108,7 +122,6 @@ class App extends React.Component {
       imgH = imgFigureDOM.scrollHeight,
       halfImgW = Math.ceil(imgW / 2),
       halfImgH = Math.ceil(imgH / 2);
-    console.log(stageDOM)
     // 计算中心图片的位置点
     this.props.constant.centerPos = {
       left: halfStageW - halfImgW,
@@ -130,14 +143,20 @@ class App extends React.Component {
     this.rearrange(0)
   }
 
-  inverse(index){
-    return function(){
+  inverse(index) {
+    return function () {
       var imgsArrangeArr = this.state.imgsArrangeArr
       imgsArrangeArr[index].isInverse = !imgsArrangeArr[index].isInverse
       this.setState({
         imgsArrangeArr: imgsArrangeArr
       })
     }.bind(this);
+  }
+
+  center(index) {
+    return function () {
+      this.rearrange(index)
+    }.bind(this)
   }
   //重新布局所有图片 
   rearrange(centerIndex) {
@@ -159,8 +178,11 @@ class App extends React.Component {
       imgArrangeCenter = imgsArrangeArr.splice(centerIndex, 1)
 
     // 首先居中centerIndex的图片
-    imgArrangeCenter[0].pos = centerPos
-    imgArrangeCenter[0].rotate = 0
+    imgArrangeCenter[0] = {
+      pos: centerPos,
+      rotate: 0,
+      isCenter: true
+    }
     // 取出要布局上侧的图片的状态信息
     topImgSpliceIndex = Math.ceil(Math.random() * (imgsArrangeArr.length - topImgNum))
     imgsArrangeTopArr = imgsArrangeArr.splice(topImgSpliceIndex, topImgNum)
@@ -172,7 +194,8 @@ class App extends React.Component {
           top: getRangeRandom(vPosRangeTopY[0], vPosRangeTopY[1]),
           left: getRangeRandom(vPosRangeX[0], vPosRangeX[1])
         },
-        rotate: get30DegRandom()
+        rotate: get30DegRandom(),
+        isCenter: false
       }
     })
 
@@ -190,7 +213,8 @@ class App extends React.Component {
           top: getRangeRandom(hPosRangeY[0], hPosRangeY[1]),
           left: getRangeRandom(hPosRangeLORX[0], hPosRangeLORX[1])
         },
-        rotate: get30DegRandom()
+        rotate: get30DegRandom(),
+        isCenter: false
       }
     }
 

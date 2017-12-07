@@ -50,14 +50,14 @@ module.exports = {
 
                         // webpack2 需要设置modules 为false
                         presets: [
-                            ['es2015', { 'modules': false }],
+                            'es2015',
                             'react'
                         ],
 
                         // babel的插件
                         plugins: [
                             //   'react-require',
-                            'transform-object-rest-spread'
+                            // 'transform-object-rest-spread'
                         ]
                     }
                 }
