@@ -1,0 +1,61 @@
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.app{
+    width: 100%;
+    height: 100%;
+}
+
+
+.todo-title{
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+
+    @at-root{
+        .title-color{
+            color: #f00;
+        }
+        .todo-input{
+            width: 100%;
+        }
+    }
+}
+
+.todo-main{
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    @at-root{
+        table{
+            width: 100%;
+            td, th{
+                width: 25%;
+            }
+            tr{
+                border-bottom: 1px solid #777;
+                .td-check{
+                    width: 5%;
+                }
+                .td-task{
+                    width: 70%;
+                    word-wrap: break-word;
+                    word-break: break-all;
+                }
+                .td-action{
+                    width: 10%;
+                }
+            }
+        }
+        
+    }
+}
+
+.todo-empty{
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}

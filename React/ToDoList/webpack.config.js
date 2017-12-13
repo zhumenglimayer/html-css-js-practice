@@ -6,6 +6,9 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist')
     },
+    resolve: {
+        alias: { _: path.resolve(__dirname, 'src') }
+    },
     module: {
         rules: [
             {
@@ -16,11 +19,11 @@ module.exports = {
                 ]
             },
             {
-                test: /\.styl$/,
+                test: /\.scss$/,
                 use: [
                     'style-loader',
                     'css-loader',
-                    'stylus-loader'
+                    'sass-loader'
                 ]
             },
             {
